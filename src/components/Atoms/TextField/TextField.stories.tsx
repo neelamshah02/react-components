@@ -26,3 +26,7 @@ export const Input: React.FC = () => {
 export const Password: React.FC = () => (
   <TextField label="Password" id="tf-password" type="password" />
 );
+
+export const Number: React.FC = () => (
+  <TextField label="Phone Number" id="number" type="number" />
+);
