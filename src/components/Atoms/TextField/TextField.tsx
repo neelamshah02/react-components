@@ -160,7 +160,7 @@ const Container = styled.div.attrs<ContainerProps>(({ hasError }) => ({
 
       > span {
         font-size: inherit;
-        font-family: ${styles.fonts.stfMedium};
+        font-family: ${styles.fonts.stfBold};
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
