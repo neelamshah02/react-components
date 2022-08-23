@@ -10,7 +10,8 @@ export interface ButtonProps {
   type?: ButtonType;
   disabled?: boolean;
   htmlType?: 'button' | 'submit' | 'reset' | undefined;
-  loading?: boolean;
+  color?: string | undefined;
+  backgroundColor?: string | undefined;
 }
 
 const Button: FC<ButtonProps & Omit<HTMLAttributes<HTMLButtonElement>, 'type'>> = ({
@@ -20,16 +21,18 @@ const Button: FC<ButtonProps & Omit<HTMLAttributes<HTMLButtonElement>, 'type'>> 
   disabled,
   htmlType,
   onClick,
+  color,
+  backgroundColor,
   ...rest
 }) => {
   return (
-    <ButtonStyled type={htmlType} onClick={onClick} buttonType={type} disabled={disabled} {...rest}>
+    <ButtonStyled type={htmlType} onClick={onClick} color={color} backgroundColor={backgroundColor} buttonType={type} disabled={disabled} {...rest}>
       {text || children}
     </ButtonStyled>
   );
 };
 
-const ButtonStyled = styled.button<{ buttonType: ButtonType; disabled: boolean | undefined }>`
+const ButtonStyled = styled.button<{ buttonType: ButtonType; disabled: boolean | undefined; color: string | undefined; backgroundColor: string | undefined }>`
   border-radius: 4px;
   height: 48px;
   border-color: transparent;
@@ -39,7 +42,7 @@ const ButtonStyled = styled.button<{ buttonType: ButtonType; disabled: boolean |
   padding: 0 5rem;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-  ${({ buttonType, disabled }) => {
+  ${({ buttonType, disabled, color, backgroundColor }) => {
     if (disabled)
       return css`
         pointer-events: none;
@@ -49,18 +52,14 @@ const ButtonStyled = styled.button<{ buttonType: ButtonType; disabled: boolean |
     switch (buttonType) {
       case 'primary':
         return css`
-          background-color: ${styles.colors.primary};
-          color: ${styles.colors.background.secondary};
-
-          &:hover {
-            background-color: ${styles.colors.background.darkBlue};
-          }
+          background-color: ${backgroundColor ? backgroundColor : styles.colors.primary};
+          color: ${color ? color : styles.colors.background.secondary};
         `;
 
       case 'ghost':
         return css`
           background-color: transparent;
-          color: ${styles.colors.primary};
+          color: ${color ? color : styles.colors.primary};
           border: 2px solid ${styles.colors.primary};
         `;
       case 'danger':
@@ -71,13 +70,10 @@ const ButtonStyled = styled.button<{ buttonType: ButtonType; disabled: boolean |
       default:
       case 'default':
         return css`
-          background-color: ${styles.colors.background.white};
-          color: ${styles.colors.primary};
-          border: 2px solid ${styles.colors.primary};
-
-          &:hover {
-            background-color: ${styles.colors.background.light};
-          }
+          background-color: #0070ad;
+          color: white;
+          border: 1px solid ${styles.colors.primary};
+          border-radius: 12px;
         `;
     }
   }}

@@ -9,8 +9,7 @@ export default {
 
 
 export const Primary: React.FC = () => <Button onClick={() => {}} type="primary" text="Primary" />
-export const secondary: React.FC = () => <Button onClick={() => {}} type="default">Default</Button>
-export const Danger: React.FC = () => <Button onClick={() => {}} type="danger">Danger</Button>
 export const Ghost: React.FC = () => <Button onClick={() => {}} type="ghost">Ghost</Button>
-
+export const Capgemini: React.FC = () => <Button onClick={() => {}} >Capgemini</Button>
 export const Disabled: React.FC = () =><Button disabled type="primary">Disabled</Button>
+export const Danger: React.FC = () => <Button onClick={() => {}} type="danger">Danger</Button>
